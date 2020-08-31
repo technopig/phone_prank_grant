@@ -16,7 +16,8 @@ TOKEN = "9fbd376409e58c7e3d14f54feb99ef7c"
 GRANT_NUMBER = "+15712719166"
 REQUESTS_INSTRUCTIONS = [
     "https://technopig.github.io/phone_prank_grant/req1.xml",
-    "https://technopig.github.io/phone_prank_grant/req2.xml"
+    "https://technopig.github.io/phone_prank_grant/req2.xml",
+    "https://technopig.github.io/phone_prank_grant/req3.xml"
 ]
 
 client = TwilioRestClient(ACCOUNT_SID, TOKEN)
@@ -39,19 +40,24 @@ def text_grant(maint_req):
 
 if __name__ == "__main__":
     # text_n(DIAL_NUMBERS)
+    time.sleep(900)
     lines = []
     with open('maintenance_requests.txt') as infile:
         for line in infile:
             line = line.strip()
             lines.append(line)
 
+    c = 0
+    dial_lines = REQUESTS_INSTRUCTIONS
     while len(lines) > 0:
+        c += 1
         req = random.choice(lines)
         lines.remove(req)
-        # text_grant(req)
-        # time.sleep(5)
-    dial_lines = REQUESTS_INSTRUCTIONS
-    while len(dial_lines) > 0:
-        d_req = random.choice(dial_lines)
-        dial_lines.remove(d_req)
-        dial_grant(d_req)
+        text_grant(req)
+        time.sleep(10)
+        if c == 6:
+            if len(dial_lines > 0):
+                c = 0
+                d_req = random.choice(dial_lines)
+                dial_lines.remove(d_req)
+                dial_grant(d_req)
