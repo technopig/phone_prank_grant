@@ -21,7 +21,7 @@ def sms_reply():
             replies.append(line)
 
     resp.message(random.choice(replies))
-    time.sleep(10)
+    time.sleep(5)
     return str(resp)
 
 
