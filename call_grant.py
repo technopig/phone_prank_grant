@@ -15,7 +15,7 @@ ACCOUNT_SID = "AC81bd7a9bcb33865e4b4fd0241dfcf7b8"
 TOKEN = "5635202829c71b76c26b24583779d45e"
 GRANT_NUMBER = "+15712719166"
 TWIML_INSTRUCTIONS_URL = \
-    "http://static.fullstackpython.com/phone-calls-python.xml"
+    "https://technopig.github.io/phone_prank_grant/resp1.xml"
 
 client = TwilioRestClient(ACCOUNT_SID, TOKEN)
 
