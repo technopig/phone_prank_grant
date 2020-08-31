@@ -1,5 +1,9 @@
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
+import random
+import time
+
+
 
 app = Flask(__name__)
 
@@ -10,7 +14,13 @@ def sms_reply():
     resp = MessagingResponse()
 
     # Add a message
-    resp.message("The Robots are coming! Head for the hills!")
+    replies = []
+    with open("replies.txt") as rfile:
+        for line in rfile:
+            line = line.strip()
+            replies.append(line)
+
+    resp.message(random.choice(replies))
 
     return str(resp)
 
